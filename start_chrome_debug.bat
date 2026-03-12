@@ -1,0 +1,5 @@
+taskkill /f /im chrome.exe >nul 2>&1
+
+"C:\Program Files\Google\Chrome\Application\chrome.exe" ^
+--remote-debugging-port=9222 ^
+--user-data-dir="C:\chrome-debug-profile"
