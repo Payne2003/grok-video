@@ -2,43 +2,21 @@ from PySide6.QtWidgets import QWidget, QVBoxLayout, QLabel
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QFont
 
-
-class _PlaceholderPanel(QWidget):
-    def __init__(self, icon, title, desc):
+class ImagePanel(QWidget):
+    def __init__(self):
         super().__init__()
         lay = QVBoxLayout(self)
         lay.setAlignment(Qt.AlignCenter)
         lay.setSpacing(12)
-
-        ico = QLabel(icon)
+        ico = QLabel("🖼️")
         ico.setFont(QFont("Segoe UI Emoji", 48))
         ico.setAlignment(Qt.AlignCenter)
-
-        t = QLabel(title)
+        t = QLabel("Tạo Ảnh")
         t.setObjectName("SectionTitle")
         t.setAlignment(Qt.AlignCenter)
         t.setFont(QFont("Segoe UI", 18, QFont.Bold))
-
-        d = QLabel(desc)
-        d.setObjectName("StatLabel")
+        d = QLabel("Tính năng tạo ảnh từ văn bản bằng Grok AI")
         d.setAlignment(Qt.AlignCenter)
-        d.setFont(QFont("Segoe UI", 12))
-
         lay.addWidget(ico)
         lay.addWidget(t)
         lay.addWidget(d)
-
-
-class ImagePanel(_PlaceholderPanel):
-    def __init__(self):
-        super().__init__("🖼️", "Tạo Ảnh", "Tính năng tạo ảnh từ văn bản bằng Grok AI")
-
-
-class ExtendPanel(_PlaceholderPanel):
-    def __init__(self):
-        super().__init__("🔗", "Extend Video", "Kéo dài video hiện có với Grok AI")
-
-
-class HistoryPanel(_PlaceholderPanel):
-    def __init__(self):
-        super().__init__("📋", "Lịch sử", "Xem lại toàn bộ lịch sử tạo video và ảnh")

@@ -14,3 +14,5 @@ class LoginTimeoutError(AuthError):
 
 class BrowserNotReadyError(AuthError):
     """Raised when browser / page is not initialised yet."""
+
+

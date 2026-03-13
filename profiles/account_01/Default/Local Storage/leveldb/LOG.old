@@ -1,0 +1,5 @@
+2026/03/13-16:16:40.505 bbc Reusing MANIFEST D:\grok-video-tool\profiles\account_01\Default\Local Storage\leveldb/MANIFEST-000001
+2026/03/13-16:16:40.508 bbc Recovering log #18
+2026/03/13-16:16:40.508 bbc Level-0 table #21: started
+2026/03/13-16:16:40.586 bbc Level-0 table #21: 59379 bytes OK
+2026/03/13-16:16:40.625 bbc Delete type=0 #18

@@ -2,8 +2,8 @@ from PySide6.QtWidgets import (
     QMainWindow, QWidget, QVBoxLayout, QHBoxLayout,
     QPushButton, QTabWidget, QLabel, QFrame
 )
-from PySide6.QtCore import Qt, QSize
-from PySide6.QtGui import QFont, QIcon
+from PySide6.QtCore import Qt
+from PySide6.QtGui import QFont
 
 from ui.login_panel import LoginPanel
 from ui.generator_panel import GeneratorPanel
@@ -15,7 +15,7 @@ from ui.history_panel import HistoryPanel
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("🎬 Grok Video Generator")
+        self.setWindowTitle("Grok Video Generator")
         self.setMinimumSize(1200, 780)
         self._dark_mode = True
         self._setup_ui()
@@ -30,23 +30,22 @@ class MainWindow(QMainWindow):
         # ── Header ──────────────────────────────────────────────
         header = QFrame()
         header.setObjectName("AppHeader")
-        header.setFixedHeight(60)
+        header.setFixedHeight(56)
         h_layout = QHBoxLayout(header)
         h_layout.setContentsMargins(18, 0, 18, 0)
 
         icon_lbl = QLabel("🎬")
-        icon_lbl.setFont(QFont("Segoe UI Emoji", 20))
+        icon_lbl.setFont(QFont("Segoe UI Emoji", 18))
         title_lbl = QLabel("Grok Video Generator")
         title_lbl.setObjectName("AppTitle")
-        title_lbl.setFont(QFont("Segoe UI", 30, QFont.Bold))
-        ver_lbl = QLabel("v2.2.0")
+        title_lbl.setFont(QFont("Segoe UI", 15, QFont.Bold))
+        ver_lbl = QLabel("  v2.2.0")
         ver_lbl.setObjectName("VerLabel")
-        ver_lbl.setFont(QFont("Segoe UI", 9))
+        ver_lbl.setFont(QFont("Segoe UI", 10))
 
         h_layout.addWidget(icon_lbl)
-        h_layout.addSpacing(8)
+        h_layout.addSpacing(6)
         h_layout.addWidget(title_lbl)
-        h_layout.addSpacing(8)
         h_layout.addWidget(ver_lbl)
         h_layout.addStretch()
 
@@ -71,11 +70,11 @@ class MainWindow(QMainWindow):
         self.tabs.setObjectName("MainTabs")
         self.tabs.setDocumentMode(True)
 
-        self.login_panel = LoginPanel()
+        self.login_panel     = LoginPanel()
         self.generator_panel = GeneratorPanel()
-        self.image_panel = ImagePanel()
-        self.extend_panel = ExtendPanel()
-        self.history_panel = HistoryPanel()
+        self.image_panel     = ImagePanel()
+        self.extend_panel    = ExtendPanel()
+        self.history_panel   = HistoryPanel()
 
         self.tabs.addTab(self.login_panel,     "👤  Tài khoản")
         self.tabs.addTab(self.generator_panel, "🎬  Tạo Video")
@@ -93,35 +92,43 @@ class MainWindow(QMainWindow):
 
     def _apply_stylesheet(self):
         if self._dark_mode:
-            bg        = "#0d1117"
-            bg2       = "#161b22"
-            bg3       = "#21262d"
-            border    = "#30363d"
-            text      = "#e6edf3"
-            text_dim  = "#8b949e"
-            accent    = "#58a6ff"
-            accent2   = "#1f6feb"
-            green     = "#3fb950"
-            orange    = "#d29922"
-            red       = "#f85149"
-            purple    = "#bc8cff"
-            teal      = "#39d353"
-            header_bg = "#010409"
+            bg         = "#0d1117"
+            bg2        = "#161b22"
+            bg3        = "#21262d"
+            border     = "#30363d"
+            text       = "#e6edf3"
+            text_dim   = "#8b949e"
+            accent     = "#58a6ff"
+            accent2    = "#1f6feb"
+            green      = "#3fb950"
+            green_dk   = "#238636"
+            orange     = "#d29922"
+            orange_dk  = "#9e6a03"
+            red        = "#f85149"
+            red_dk     = "#b91c1c"
+            purple     = "#bc8cff"
+            teal       = "#39d353"
+            header_bg  = "#010409"
+            tab_bg     = "#010409"   # tab bar background
         else:
-            bg        = "#f6f8fa"
-            bg2       = "#ffffff"
-            bg3       = "#eaeef2"
-            border    = "#d0d7de"
-            text      = "#1f2328"
-            text_dim  = "#656d76"
-            accent    = "#0969da"
-            accent2   = "#0550ae"
-            green     = "#1a7f37"
-            orange    = "#9a6700"
-            red       = "#cf222e"
-            purple    = "#8250df"
-            teal      = "#1a7f37"
-            header_bg = "#24292f"
+            bg         = "#f6f8fa"
+            bg2        = "#ffffff"
+            bg3        = "#eaeef2"
+            border     = "#d0d7de"
+            text       = "#1f2328"
+            text_dim   = "#656d76"
+            accent     = "#0969da"
+            accent2    = "#0550ae"
+            green      = "#1a7f37"
+            green_dk   = "#116329"
+            orange     = "#9a6700"
+            orange_dk  = "#7d5000"
+            red        = "#cf222e"
+            red_dk     = "#a40e26"
+            purple     = "#8250df"
+            teal       = "#1a7f37"
+            header_bg  = "#f6f8fa"   # LIGHT: header same as bg
+            tab_bg     = "#eaeef2"   # LIGHT: tab bar slightly different
 
         self.setStyleSheet(f"""
         /* ── Global ── */
@@ -132,24 +139,43 @@ class MainWindow(QMainWindow):
             font-size: 13px;
         }}
 
+        /* ── CRITICAL: tất cả label/frame con không có bg riêng ── */
+        QLabel {{
+            color: {text};
+            background: transparent;
+        }}
+        QFrame {{
+            background: transparent;
+        }}
+
         /* ── Header ── */
         QFrame#AppHeader {{
             background: {header_bg};
             border-bottom: 1px solid {border};
         }}
-        QLabel#AppTitle {{ color: {text}; }}
-        QLabel#VerLabel  {{ color: {text_dim}; }}
+        QLabel#AppTitle {{
+            color: {text};
+            background: transparent;
+            font-size: 15px;
+            font-weight: 700;
+        }}
+        QLabel#VerLabel {{
+            color: {text_dim};
+            background: transparent;
+            font-size: 10px;
+        }}
 
         QPushButton#BtnUpdate {{
             background: {orange};
             color: #ffffff;
-            border: none;
+            border: 1px solid {orange_dk};
             border-radius: 6px;
             padding: 0 16px;
-            font-weight: 600;
+            font-weight: 700;
             font-size: 12px;
         }}
-        QPushButton#BtnUpdate:hover {{ background: #b08020; }}
+        QPushButton#BtnUpdate:hover {{ background: {orange_dk}; }}
+
         QPushButton#BtnDark {{
             background: {bg3};
             color: {text};
@@ -165,26 +191,39 @@ class MainWindow(QMainWindow):
             border: none;
             background: {bg};
         }}
+        /* Tab bar itself (the strip) */
+        QTabWidget#MainTabs QTabBar {{
+            background: {tab_bg};
+            border-bottom: 1px solid {border};
+        }}
         QTabWidget#MainTabs QTabBar::tab {{
-            background: {bg2};
+            background: transparent;
             color: {text_dim};
             border: none;
+            border-bottom: 2px solid transparent;
             padding: 10px 22px;
             font-size: 13px;
             font-weight: 500;
             margin-right: 2px;
+            min-width: 100px;
         }}
         QTabWidget#MainTabs QTabBar::tab:selected {{
             background: {accent2};
             color: #ffffff;
-            border-radius: 0;
+            border-radius: 4px 4px 0 0;
+            font-weight: 700;
         }}
         QTabWidget#MainTabs QTabBar::tab:hover:!selected {{
             background: {bg3};
             color: {text};
+            border-radius: 4px 4px 0 0;
+        }}
+        /* Phần còn thừa bên phải tab bar */
+        QTabWidget#MainTabs QTabBar::scroller {{
+            background: {tab_bg};
         }}
 
-        /* ── Panels ── */
+        /* ── Cards / Panels ── */
         QFrame#PanelCard {{
             background: {bg2};
             border: 1px solid {border};
@@ -192,8 +231,9 @@ class MainWindow(QMainWindow):
         }}
         QLabel#SectionTitle {{
             color: {text};
+            background: transparent;
             font-size: 14px;
-            font-weight: 600;
+            font-weight: 700;
         }}
 
         /* ── Stat Boxes ── */
@@ -202,11 +242,11 @@ class MainWindow(QMainWindow):
         QFrame#StatDone    {{ background: {bg2}; border: 2px solid {green};   border-radius: 8px; }}
         QFrame#StatError   {{ background: {bg2}; border: 2px solid {red};     border-radius: 8px; }}
 
-        QLabel#StatNumTotal   {{ color: {accent};  font-size: 36px; font-weight: 700; }}
-        QLabel#StatNumRunning {{ color: {orange};  font-size: 36px; font-weight: 700; }}
-        QLabel#StatNumDone    {{ color: {green};   font-size: 36px; font-weight: 700; }}
-        QLabel#StatNumError   {{ color: {red};     font-size: 36px; font-weight: 700; }}
-        QLabel#StatLabel      {{ color: {text_dim}; font-size: 12px; }}
+        QLabel#StatNumTotal   {{ color: {accent};  background: transparent; font-size: 38px; font-weight: 800; }}
+        QLabel#StatNumRunning {{ color: {orange};  background: transparent; font-size: 38px; font-weight: 800; }}
+        QLabel#StatNumDone    {{ color: {green};   background: transparent; font-size: 38px; font-weight: 800; }}
+        QLabel#StatNumError   {{ color: {red};     background: transparent; font-size: 38px; font-weight: 800; }}
+        QLabel#StatLabel      {{ color: {text_dim}; background: transparent; font-size: 12px; font-weight: 500; }}
 
         /* ── Table ── */
         QTableWidget {{
@@ -216,53 +256,66 @@ class MainWindow(QMainWindow):
             gridline-color: {border};
             color: {text};
             selection-background-color: {accent2};
+            outline: none;
         }}
-        QTableWidget::item {{ padding: 4px 8px; }}
+        QTableWidget::item {{ padding: 6px 10px; border: none; }}
+        QTableWidget::item:selected {{ background: {accent2}; color: #fff; }}
+        QTableWidget::item:hover:!selected {{ background: {bg3}; }}
         QHeaderView::section {{
             background: {bg3};
             color: {text_dim};
             border: none;
-            border-bottom: 1px solid {border};
-            padding: 6px 8px;
-            font-weight: 600;
+            border-bottom: 2px solid {border};
+            border-right: 1px solid {border};
+            padding: 7px 10px;
+            font-weight: 700;
             font-size: 12px;
         }}
-        QTableWidget::item:selected {{ background: {accent2}; color: #fff; }}
+        QTableCornerButton::section {{ background: {bg3}; border: none; }}
 
-        /* ── Buttons ── */
-        QPushButton {{ border-radius: 5px; padding: 6px 14px; font-size: 12px; font-weight: 500; border: none; }}
-
-        QPushButton#BtnGreen  {{ background: #238636; color: #fff; }}
+        /* ── Buttons base ── */
+        QPushButton {{
+            border-radius: 6px;
+            padding: 5px 14px;
+            font-size: 12px;
+            font-weight: 600;
+            border: 1px solid transparent;
+            min-height: 28px;
+            background: transparent;
+        }}
+        QPushButton#BtnGreen  {{ background: #238636; color: #fff; border-color: #196127; }}
         QPushButton#BtnGreen:hover  {{ background: #2ea043; }}
-        QPushButton#BtnBlue   {{ background: {accent2}; color: #fff; }}
+        QPushButton#BtnBlue   {{ background: {accent2}; color: #fff; border-color: #1158b0; }}
         QPushButton#BtnBlue:hover   {{ background: {accent}; }}
-        QPushButton#BtnRed    {{ background: #da3633; color: #fff; }}
+        QPushButton#BtnRed    {{ background: #da3633; color: #fff; border-color: #a0201e; }}
         QPushButton#BtnRed:hover    {{ background: #f85149; }}
-        QPushButton#BtnOrange {{ background: {orange}; color: #fff; }}
+        QPushButton#BtnOrange {{ background: {orange}; color: #fff; border-color: {orange_dk}; }}
         QPushButton#BtnOrange:hover {{ background: #e3a020; }}
-        QPushButton#BtnTeal   {{ background: #1f6a5c; color: #fff; }}
-        QPushButton#BtnTeal:hover   {{ background: #27865e; }}
-        QPushButton#BtnPurple {{ background: #6e40c9; color: #fff; }}
+        QPushButton#BtnTeal   {{ background: #14b8a6; color: #fff; border-color: #0d7a6e; }}
+        QPushButton#BtnTeal:hover   {{ background: #2dd4bf; }}
+        QPushButton#BtnPurple {{ background: #6e40c9; color: #fff; border-color: #5a32a3; }}
         QPushButton#BtnPurple:hover {{ background: {purple}; }}
         QPushButton#BtnGray   {{ background: {bg3}; color: {text}; border: 1px solid {border}; }}
         QPushButton#BtnGray:hover   {{ background: {border}; }}
-        QPushButton#BtnCyan   {{ background: #0e7490; color: #fff; }}
+        QPushButton#BtnYellow {{ background: #d29922; color: #fff; border-color: #9e6a03; font-weight: 700; }}
+        QPushButton#BtnYellow:hover {{ background: #e3a020; }}
+        QPushButton#BtnCyan   {{ background: #0e7490; color: #fff; border-color: #0a5970; }}
         QPushButton#BtnCyan:hover   {{ background: #0891b2; }}
 
-        /* Tab-like toggle buttons */
+        /* Toggle buttons */
         QPushButton#TabToggle {{
             background: {accent2};
             color: #fff;
-            border-radius: 5px;
-            padding: 6px 18px;
-            font-weight: 600;
+            border-color: #1158b0;
+            font-weight: 700;
         }}
+        QPushButton#TabToggle:hover {{ background: {accent}; }}
         QPushButton#TabToggleOff {{
             background: {bg3};
             color: {text_dim};
-            border-radius: 5px;
-            padding: 6px 18px;
+            border: 1px solid {border};
         }}
+        QPushButton#TabToggleOff:hover {{ background: {border}; color: {text}; }}
 
         /* ── Inputs ── */
         QTextEdit, QLineEdit {{
@@ -273,29 +326,40 @@ class MainWindow(QMainWindow):
             padding: 6px 10px;
             font-size: 12px;
         }}
-        QTextEdit:focus, QLineEdit:focus {{ border-color: {accent}; }}
+        QTextEdit:focus, QLineEdit:focus {{ border-color: {accent}; background: {bg2}; }}
         QComboBox {{
             background: {bg3};
             border: 1px solid {border};
             border-radius: 5px;
             color: {text};
             padding: 4px 10px;
+            min-height: 28px;
         }}
-        QComboBox QAbstractItemView {{ background: {bg3}; color: {text}; border: 1px solid {border}; }}
+        QComboBox:focus {{ border-color: {accent}; }}
+        QComboBox::drop-down {{ border: none; width: 22px; }}
+        QComboBox QAbstractItemView {{
+            background: {bg2};
+            border: 1px solid {border};
+            color: {text};
+            selection-background-color: {accent2};
+        }}
 
         /* ── ScrollBar ── */
         QScrollBar:vertical {{
-            background: {bg2}; width: 8px; margin: 0;
+            background: transparent; width: 7px; margin: 2px 1px;
         }}
         QScrollBar::handle:vertical {{
-            background: {border}; border-radius: 4px; min-height: 20px;
+            background: {border}; border-radius: 3px; min-height: 20px;
         }}
+        QScrollBar::handle:vertical:hover {{ background: {text_dim}; }}
         QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {{ height: 0; }}
-
-        /* ── Status badge ── */
-        QLabel#BadgeGreen  {{ background: #238636; color: #fff; border-radius: 4px; padding: 2px 10px; font-size: 11px; font-weight: 600; }}
-        QLabel#BadgeOrange {{ background: {orange}; color: #fff; border-radius: 4px; padding: 2px 10px; font-size: 11px; font-weight: 600; }}
-        QLabel#BadgeRed    {{ background: #da3633; color: #fff; border-radius: 4px; padding: 2px 10px; font-size: 11px; font-weight: 600; }}
+        QScrollBar:horizontal {{
+            background: transparent; height: 7px;
+        }}
+        QScrollBar::handle:horizontal {{
+            background: {border}; border-radius: 3px; min-width: 20px;
+        }}
+        QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal {{ width: 0; }}
 
         /* ── Log area ── */
         QTextEdit#LogArea {{
@@ -305,18 +369,23 @@ class MainWindow(QMainWindow):
             color: {teal};
             font-family: 'Consolas', monospace;
             font-size: 11px;
+            padding: 8px;
         }}
 
         /* ── Ready bar ── */
         QFrame#ReadyBar {{
-            background: {bg2};
-            border: 1px solid {green};
-            border-radius: 5px;
+            background: rgba(63, 185, 80, 0.07);
+            border: 1px solid {green_dk};
+            border-radius: 6px;
         }}
-        QLabel#ReadyLabel {{ color: {green}; font-weight: 600; }}
+        QLabel#ReadyLabel {{
+            color: {green};
+            background: transparent;
+            font-weight: 700;
+            font-size: 12px;
+        }}
 
         /* ── Splitter ── */
-        QSplitter::handle {{ background: {border}; width: 1px; }}
-
-        QLabel {{ color: {text}; }}
+        QSplitter::handle:horizontal {{ width: 1px; background: {border}; }}
+        QSplitter::handle:vertical   {{ height: 1px; background: {border}; }}
         """)

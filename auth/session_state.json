@@ -1,1 +1,279 @@
-{"cookies": [{"name": "i18nextLng", "value": "vi", "domain": "grok.com", "path": "/", "expires": 1804822272, "httpOnly": false, "secure": false, "sameSite": "Strict"}, {"name": "guest_id_marketing", "value": "v1%3A177322128373451405", "domain": ".twitter.com", "path": "/", "expires": 1807781283.814925, "httpOnly": false, "secure": true, "sameSite": "None"}, {"name": "guest_id_ads", "value": "v1%3A177322128373451405", "domain": ".twitter.com", "path": "/", "expires": 1807781283.814959, "httpOnly": false, "secure": true, "sameSite": "None"}, {"name": "personalization_id", "value": "\"v1_l/bzgXzYPcoKTRsZU8bp3A==\"", "domain": ".twitter.com", "path": "/", "expires": 1807781283.814979, "httpOnly": false, "secure": true, "sameSite": "None"}, {"name": "guest_id", "value": "v1%3A177322128373451405", "domain": ".twitter.com", "path": "/", "expires": 1807781283.814999, "httpOnly": false, "secure": true, "sameSite": "None"}, {"name": "muc_ads", "value": "4ed85ce0-07c8-4f3b-9113-3c6441244cc6", "domain": ".t.co", "path": "/", "expires": 1807781283.850475, "httpOnly": false, "secure": true, "sameSite": "None"}, {"name": "redirect", "value": "%7B%22redirectDestination%22%3A%22grok-com%22%2C%22redirectPathAndParams%22%3A%22%2Fimagine%22%7D", "domain": "accounts.x.ai", "path": "/", "expires": 1773307689.147334, "httpOnly": true, "secure": true, "sameSite": "Lax"}, {"name": "referrer", "value": "grok-com", "domain": "accounts.x.ai", "path": "/", "expires": 1773823877.524956, "httpOnly": true, "secure": true, "sameSite": "Lax"}, {"name": "_ga", "value": "GA1.1.1128766626.1773219073", "domain": ".grok.com", "path": "/", "expires": 1807846272.317921, "httpOnly": false, "secure": false, "sameSite": "Lax"}, {"name": "_twpid", "value": "tw.1773219072659.171213205491778133", "domain": ".grok.com", "path": "/", "expires": 1806915072.660757, "httpOnly": false, "secure": true, "sameSite": "Strict"}, {"name": "cf_clearance", "value": "TUtBKb_X9nGatoaU7tEWgoFtUzqxR48dxkd5ApEhRxI-1773219077-1.2.1.1-0RxgFoT0YVsG3vyOO6VAnT7J8u7mvfi1klmMlv3he.NCndmJhynPi8UMSWuBQvK399ObVXL27qYeZjtRmFK.ft5IGWMZKKzoRGQR4QgeSVfCpUPmKoASUFBy0jZ5o3JQHb0NGKEIb6M_z9200X5yFFuUJVk.EdMN2Y9upobjiwI7LcIwtLFZTb7IiGkZT_OwU6hBhY5gXWQux_AbhsWEcVI47IHwAKxodDPm744tKG4", "domain": ".x.ai", "path": "/", "expires": 1804755077.863394, "httpOnly": true, "secure": true, "sameSite": "None", "partitionKey": "https://x.ai", "_crHasCrossSiteAncestor": false}, {"name": "_twpid", "value": "tw.1773219077905.823053425595553458", "domain": ".x.ai", "path": "/", "expires": 1806915077.90863, "httpOnly": false, "secure": true, "sameSite": "Strict"}, {"name": "last-logged-in-with", "value": "GOOGLE", "domain": "accounts.x.ai", "path": "/", "expires": 1780995079.353817, "httpOnly": true, "secure": true, "sameSite": "Lax"}, {"name": "sso", "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzZXNzaW9uX2lkIjoiNzhhNDMyMzctYzRlMC00YjVjLWJjNDUtZWJkOWFiOWE2ZTNkIn0.ba0w6UwVqDU5p2bY5DcxAdoxTaOTvLpDfHHLKf7k3Vg", "domain": ".grokipedia.com", "path": "/", "expires": 1788771085.030644, "httpOnly": true, "secure": true, "sameSite": "Lax"}, {"name": "sso-rw", "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzZXNzaW9uX2lkIjoiNzhhNDMyMzctYzRlMC00YjVjLWJjNDUtZWJkOWFiOWE2ZTNkIn0.ba0w6UwVqDU5p2bY5DcxAdoxTaOTvLpDfHHLKf7k3Vg", "domain": ".grokipedia.com", "path": "/", "expires": 1788771085.03073, "httpOnly": true, "secure": true, "sameSite": "Strict"}, {"name": "sso", "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzZXNzaW9uX2lkIjoiNzhhNDMyMzctYzRlMC00YjVjLWJjNDUtZWJkOWFiOWE2ZTNkIn0.ba0w6UwVqDU5p2bY5DcxAdoxTaOTvLpDfHHLKf7k3Vg", "domain": ".grokusercontent.com", "path": "/", "expires": 1788771085.433817, "httpOnly": true, "secure": true, "sameSite": "None"}, {"name": "sso-rw", "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzZXNzaW9uX2lkIjoiNzhhNDMyMzctYzRlMC00YjVjLWJjNDUtZWJkOWFiOWE2ZTNkIn0.ba0w6UwVqDU5p2bY5DcxAdoxTaOTvLpDfHHLKf7k3Vg", "domain": ".grok.com", "path": "/", "expires": 1788771085.756479, "httpOnly": true, "secure": true, "sameSite": "Strict"}, {"name": "sso", "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzZXNzaW9uX2lkIjoiNzhhNDMyMzctYzRlMC00YjVjLWJjNDUtZWJkOWFiOWE2ZTNkIn0.ba0w6UwVqDU5p2bY5DcxAdoxTaOTvLpDfHHLKf7k3Vg", "domain": ".grok.com", "path": "/", "expires": 1788771085.756545, "httpOnly": true, "secure": true, "sameSite": "Lax"}, {"name": "sso-rw", "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzZXNzaW9uX2lkIjoiNzhhNDMyMzctYzRlMC00YjVjLWJjNDUtZWJkOWFiOWE2ZTNkIn0.ba0w6UwVqDU5p2bY5DcxAdoxTaOTvLpDfHHLKf7k3Vg", "domain": ".x.ai", "path": "/", "expires": 1788771086.003312, "httpOnly": true, "secure": true, "sameSite": "Strict"}, {"name": "sso", "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzZXNzaW9uX2lkIjoiNzhhNDMyMzctYzRlMC00YjVjLWJjNDUtZWJkOWFiOWE2ZTNkIn0.ba0w6UwVqDU5p2bY5DcxAdoxTaOTvLpDfHHLKf7k3Vg", "domain": ".x.ai", "path": "/", "expires": 1788771086.003392, "httpOnly": true, "secure": true, "sameSite": "Lax"}, {"name": "mp_0b4055a12491884bcb6f34a5aa2718b6_mixpanel", "value": "%7B%22distinct_id%22%3A%223a2e0dfa-9697-4182-9c26-f0789c202127%22%2C%22%24device_id%22%3A%22a18c2f7b-0a43-487e-9ed1-85ab2df5cf66%22%2C%22%24initial_referrer%22%3A%22https%3A%2F%2Fgrok.com%2F%22%2C%22%24initial_referring_domain%22%3A%22grok.com%22%2C%22__mps%22%3A%7B%7D%2C%22__mpso%22%3A%7B%7D%2C%22__mpus%22%3A%7B%7D%2C%22__mpa%22%3A%7B%7D%2C%22__mpu%22%3A%7B%7D%2C%22__mpr%22%3A%5B%5D%2C%22__mpap%22%3A%5B%5D%2C%22%24user_id%22%3A%223a2e0dfa-9697-4182-9c26-f0789c202127%22%2C%22%24search_engine%22%3A%22google%22%7D", "domain": ".x.ai", "path": "/", "expires": 1804755086, "httpOnly": false, "secure": false, "sameSite": "Lax"}, {"name": "NID", "value": "529=XOQh-m82DyXqrNzgJ3NIVPdJES-jc_cwIYA0_1axUPwL8kiCbSl1Yigtt8_5LYTdj73BjeYoDCee3L3cH33Z62HFsCEUaMG8TMQjNwVQm72evXPNcNqzvwOSHH6liO9eFh-Qc7ChkS4FIvMVKdqx1SehxHvme-ADfdLDCAPs8uk26yF6wGNHZqOwmgsonCUjJrFbL-BFNLEJGUw3cA", "domain": ".google.com", "path": "/", "expires": 1789031940.4029, "httpOnly": true, "secure": true, "sameSite": "None"}, {"name": "x-userid", "value": "3a2e0dfa-9697-4182-9c26-f0789c202127", "domain": ".grok.com", "path": "/", "expires": -1, "httpOnly": false, "secure": true, "sameSite": "None"}, {"name": "mp_ea93da913ddb66b6372b89d97b1029ac_mixpanel", "value": "%7B%22distinct_id%22%3A%223a2e0dfa-9697-4182-9c26-f0789c202127%22%2C%22%24device_id%22%3A%2200771b02-fcd1-433d-ab94-d76d0ed9cccd%22%2C%22%24initial_referrer%22%3A%22https%3A%2F%2Fgrok.com%2Fimagine%3F__cf_chl_tk%3DTfUs1x3GxK7QVuRSyFPrOYKQY4j2vbyZ2B9pzDuMMes-1773219067-1.0.1.1-kMNKInNcKQKZ91ZPGh6_CiH1Tx6pMw4SERdC35G2eTE%22%2C%22%24initial_referring_domain%22%3A%22grok.com%22%2C%22__mps%22%3A%7B%7D%2C%22__mpso%22%3A%7B%7D%2C%22__mpus%22%3A%7B%7D%2C%22__mpa%22%3A%7B%7D%2C%22__mpu%22%3A%7B%7D%2C%22__mpr%22%3A%5B%5D%2C%22__mpap%22%3A%5B%5D%2C%22%24user_id%22%3A%223a2e0dfa-9697-4182-9c26-f0789c202127%22%7D", "domain": ".grok.com", "path": "/", "expires": 1804822282, "httpOnly": false, "secure": false, "sameSite": "Lax"}, {"name": "_ga_8FEWB057YH", "value": "GS2.1.s1773286271$o4$g1$t1773286272$j59$l0$h0", "domain": ".grok.com", "path": "/", "expires": 1807846272.330158, "httpOnly": false, "secure": false, "sameSite": "Lax"}, {"name": "cf_clearance", "value": "J4IbEgx4uabksVc7eD9Qh7aQtPApug6vCwbmc1qFAUw-1773286272-1.2.1.1-dpxanhx48gHIC3NYbYwBrE3o0xg0Votw82C3UYyt9sMyoPSaAt0qTaloVd1IfNbz5J87c95n1ALL2PnXqtsK2GFzjt_Vx_eY_uFcKszbx45u1QcJKcgfYop5fZj6FpfUuNenqr4dCECsYK0ib7qgNQD5uMrydcUP0DOewJWuoQhw.pgWWrP.zz6pOFTrhC3eJHP70XGlb6mtxV0AoPzg4crBAjmnV9c3CZeFQSJBAaZ6R0LAqAkBp2oJ2zSTlIHq", "domain": ".grok.com", "path": "/", "expires": 1804822272.417878, "httpOnly": true, "secure": true, "sameSite": "None", "partitionKey": "https://grok.com", "_crHasCrossSiteAncestor": false}, {"name": "__cf_bm", "value": "IGVHU7OuolsvoBEKKhFhyRyXM62fALIGdZsNkzsrGMU-1773287024-1.0.1.1-wZRu0jZyXJxnvuV2BaD9WljV8lMjm6JPHXtoe9KkmfTWWAVxb3_RicSd4uEZMNgA5tIVhrgIygta2IWsaSEGp0IhRXiCVHi_Y2c33fvNdE4", "domain": ".grok.com", "path": "/", "expires": 1773288823.873125, "httpOnly": true, "secure": true, "sameSite": "None"}], "origins": []}
+{
+  "cookies": [
+    {
+      "name": "i18nextLng",
+      "value": "vi",
+      "domain": "grok.com",
+      "path": "/",
+      "expires": 1804822272,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Strict"
+    },
+    {
+      "name": "guest_id_marketing",
+      "value": "v1%3A177322128373451405",
+      "domain": ".twitter.com",
+      "path": "/",
+      "expires": 1807781283.814925,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "guest_id_ads",
+      "value": "v1%3A177322128373451405",
+      "domain": ".twitter.com",
+      "path": "/",
+      "expires": 1807781283.814959,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "personalization_id",
+      "value": "\"v1_l/bzgXzYPcoKTRsZU8bp3A==\"",
+      "domain": ".twitter.com",
+      "path": "/",
+      "expires": 1807781283.814979,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "guest_id",
+      "value": "v1%3A177322128373451405",
+      "domain": ".twitter.com",
+      "path": "/",
+      "expires": 1807781283.814999,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "muc_ads",
+      "value": "4ed85ce0-07c8-4f3b-9113-3c6441244cc6",
+      "domain": ".t.co",
+      "path": "/",
+      "expires": 1807781283.850475,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "redirect",
+      "value": "%7B%22redirectDestination%22%3A%22grok-com%22%2C%22redirectPathAndParams%22%3A%22%2Fimagine%22%7D",
+      "domain": "accounts.x.ai",
+      "path": "/",
+      "expires": 1773307689.147334,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "referrer",
+      "value": "grok-com",
+      "domain": "accounts.x.ai",
+      "path": "/",
+      "expires": 1773823877.524956,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "_ga",
+      "value": "GA1.1.1128766626.1773219073",
+      "domain": ".grok.com",
+      "path": "/",
+      "expires": 1807846272.317921,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "_twpid",
+      "value": "tw.1773219072659.171213205491778133",
+      "domain": ".grok.com",
+      "path": "/",
+      "expires": 1806915072.660757,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Strict"
+    },
+    {
+      "name": "cf_clearance",
+      "value": "TUtBKb_X9nGatoaU7tEWgoFtUzqxR48dxkd5ApEhRxI-1773219077-1.2.1.1-0RxgFoT0YVsG3vyOO6VAnT7J8u7mvfi1klmMlv3he.NCndmJhynPi8UMSWuBQvK399ObVXL27qYeZjtRmFK.ft5IGWMZKKzoRGQR4QgeSVfCpUPmKoASUFBy0jZ5o3JQHb0NGKEIb6M_z9200X5yFFuUJVk.EdMN2Y9upobjiwI7LcIwtLFZTb7IiGkZT_OwU6hBhY5gXWQux_AbhsWEcVI47IHwAKxodDPm744tKG4",
+      "domain": ".x.ai",
+      "path": "/",
+      "expires": 1804755077.863394,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None",
+      "partitionKey": "https://x.ai",
+      "_crHasCrossSiteAncestor": false
+    },
+    {
+      "name": "_twpid",
+      "value": "tw.1773219077905.823053425595553458",
+      "domain": ".x.ai",
+      "path": "/",
+      "expires": 1806915077.90863,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Strict"
+    },
+    {
+      "name": "last-logged-in-with",
+      "value": "GOOGLE",
+      "domain": "accounts.x.ai",
+      "path": "/",
+      "expires": 1780995079.353817,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "sso",
+      "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzZXNzaW9uX2lkIjoiNzhhNDMyMzctYzRlMC00YjVjLWJjNDUtZWJkOWFiOWE2ZTNkIn0.ba0w6UwVqDU5p2bY5DcxAdoxTaOTvLpDfHHLKf7k3Vg",
+      "domain": ".grokipedia.com",
+      "path": "/",
+      "expires": 1788771085.030644,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "sso-rw",
+      "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzZXNzaW9uX2lkIjoiNzhhNDMyMzctYzRlMC00YjVjLWJjNDUtZWJkOWFiOWE2ZTNkIn0.ba0w6UwVqDU5p2bY5DcxAdoxTaOTvLpDfHHLKf7k3Vg",
+      "domain": ".grokipedia.com",
+      "path": "/",
+      "expires": 1788771085.03073,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Strict"
+    },
+    {
+      "name": "sso",
+      "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzZXNzaW9uX2lkIjoiNzhhNDMyMzctYzRlMC00YjVjLWJjNDUtZWJkOWFiOWE2ZTNkIn0.ba0w6UwVqDU5p2bY5DcxAdoxTaOTvLpDfHHLKf7k3Vg",
+      "domain": ".grokusercontent.com",
+      "path": "/",
+      "expires": 1788771085.433817,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "sso-rw",
+      "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzZXNzaW9uX2lkIjoiNzhhNDMyMzctYzRlMC00YjVjLWJjNDUtZWJkOWFiOWE2ZTNkIn0.ba0w6UwVqDU5p2bY5DcxAdoxTaOTvLpDfHHLKf7k3Vg",
+      "domain": ".grok.com",
+      "path": "/",
+      "expires": 1788771085.756479,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Strict"
+    },
+    {
+      "name": "sso",
+      "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzZXNzaW9uX2lkIjoiNzhhNDMyMzctYzRlMC00YjVjLWJjNDUtZWJkOWFiOWE2ZTNkIn0.ba0w6UwVqDU5p2bY5DcxAdoxTaOTvLpDfHHLKf7k3Vg",
+      "domain": ".grok.com",
+      "path": "/",
+      "expires": 1788771085.756545,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "sso-rw",
+      "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzZXNzaW9uX2lkIjoiNzhhNDMyMzctYzRlMC00YjVjLWJjNDUtZWJkOWFiOWE2ZTNkIn0.ba0w6UwVqDU5p2bY5DcxAdoxTaOTvLpDfHHLKf7k3Vg",
+      "domain": ".x.ai",
+      "path": "/",
+      "expires": 1788771086.003312,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Strict"
+    },
+    {
+      "name": "sso",
+      "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzZXNzaW9uX2lkIjoiNzhhNDMyMzctYzRlMC00YjVjLWJjNDUtZWJkOWFiOWE2ZTNkIn0.ba0w6UwVqDU5p2bY5DcxAdoxTaOTvLpDfHHLKf7k3Vg",
+      "domain": ".x.ai",
+      "path": "/",
+      "expires": 1788771086.003392,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "mp_0b4055a12491884bcb6f34a5aa2718b6_mixpanel",
+      "value": "%7B%22distinct_id%22%3A%223a2e0dfa-9697-4182-9c26-f0789c202127%22%2C%22%24device_id%22%3A%22a18c2f7b-0a43-487e-9ed1-85ab2df5cf66%22%2C%22%24initial_referrer%22%3A%22https%3A%2F%2Fgrok.com%2F%22%2C%22%24initial_referring_domain%22%3A%22grok.com%22%2C%22__mps%22%3A%7B%7D%2C%22__mpso%22%3A%7B%7D%2C%22__mpus%22%3A%7B%7D%2C%22__mpa%22%3A%7B%7D%2C%22__mpu%22%3A%7B%7D%2C%22__mpr%22%3A%5B%5D%2C%22__mpap%22%3A%5B%5D%2C%22%24user_id%22%3A%223a2e0dfa-9697-4182-9c26-f0789c202127%22%2C%22%24search_engine%22%3A%22google%22%7D",
+      "domain": ".x.ai",
+      "path": "/",
+      "expires": 1804755086,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "NID",
+      "value": "529=XOQh-m82DyXqrNzgJ3NIVPdJES-jc_cwIYA0_1axUPwL8kiCbSl1Yigtt8_5LYTdj73BjeYoDCee3L3cH33Z62HFsCEUaMG8TMQjNwVQm72evXPNcNqzvwOSHH6liO9eFh-Qc7ChkS4FIvMVKdqx1SehxHvme-ADfdLDCAPs8uk26yF6wGNHZqOwmgsonCUjJrFbL-BFNLEJGUw3cA",
+      "domain": ".google.com",
+      "path": "/",
+      "expires": 1789031940.4029,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "x-userid",
+      "value": "3a2e0dfa-9697-4182-9c26-f0789c202127",
+      "domain": ".grok.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "mp_ea93da913ddb66b6372b89d97b1029ac_mixpanel",
+      "value": "%7B%22distinct_id%22%3A%223a2e0dfa-9697-4182-9c26-f0789c202127%22%2C%22%24device_id%22%3A%2200771b02-fcd1-433d-ab94-d76d0ed9cccd%22%2C%22%24initial_referrer%22%3A%22https%3A%2F%2Fgrok.com%2Fimagine%3F__cf_chl_tk%3DTfUs1x3GxK7QVuRSyFPrOYKQY4j2vbyZ2B9pzDuMMes-1773219067-1.0.1.1-kMNKInNcKQKZ91ZPGh6_CiH1Tx6pMw4SERdC35G2eTE%22%2C%22%24initial_referring_domain%22%3A%22grok.com%22%2C%22__mps%22%3A%7B%7D%2C%22__mpso%22%3A%7B%7D%2C%22__mpus%22%3A%7B%7D%2C%22__mpa%22%3A%7B%7D%2C%22__mpu%22%3A%7B%7D%2C%22__mpr%22%3A%5B%5D%2C%22__mpap%22%3A%5B%5D%2C%22%24user_id%22%3A%223a2e0dfa-9697-4182-9c26-f0789c202127%22%7D",
+      "domain": ".grok.com",
+      "path": "/",
+      "expires": 1804822282,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "_ga_8FEWB057YH",
+      "value": "GS2.1.s1773286271$o4$g1$t1773286272$j59$l0$h0",
+      "domain": ".grok.com",
+      "path": "/",
+      "expires": 1807846272.330158,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "cf_clearance",
+      "value": "J4IbEgx4uabksVc7eD9Qh7aQtPApug6vCwbmc1qFAUw-1773286272-1.2.1.1-dpxanhx48gHIC3NYbYwBrE3o0xg0Votw82C3UYyt9sMyoPSaAt0qTaloVd1IfNbz5J87c95n1ALL2PnXqtsK2GFzjt_Vx_eY_uFcKszbx45u1QcJKcgfYop5fZj6FpfUuNenqr4dCECsYK0ib7qgNQD5uMrydcUP0DOewJWuoQhw.pgWWrP.zz6pOFTrhC3eJHP70XGlb6mtxV0AoPzg4crBAjmnV9c3CZeFQSJBAaZ6R0LAqAkBp2oJ2zSTlIHq",
+      "domain": ".grok.com",
+      "path": "/",
+      "expires": 1804822272.417878,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None",
+      "partitionKey": "https://grok.com",
+      "_crHasCrossSiteAncestor": false
+    },
+    {
+      "name": "__cf_bm",
+      "value": "IGVHU7OuolsvoBEKKhFhyRyXM62fALIGdZsNkzsrGMU-1773287024-1.0.1.1-wZRu0jZyXJxnvuV2BaD9WljV8lMjm6JPHXtoe9KkmfTWWAVxb3_RicSd4uEZMNgA5tIVhrgIygta2IWsaSEGp0IhRXiCVHi_Y2c33fvNdE4",
+      "domain": ".grok.com",
+      "path": "/",
+      "expires": 1773288823.873125,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    }
+  ],
+  "origins": []
+}
