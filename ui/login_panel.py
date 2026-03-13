@@ -24,14 +24,14 @@ class LoginPanel(QWidget):
 
     def _build(self):
         layout = QVBoxLayout(self)
-        layout.setContentsMargins(16, 12, 16, 12)
-        layout.setSpacing(10)
+        layout.setContentsMargins(18, 14, 18, 14)
+        layout.setSpacing(12)
 
         # ── Stats row ────────────────────────────────────────────
         stats_frame = QFrame()
         stats_frame.setObjectName("PanelCard")
         s_lay = QHBoxLayout(stats_frame)
-        s_lay.setContentsMargins(16, 10, 16, 10)
+        s_lay.setContentsMargins(18, 12, 18, 12)
 
         total_icon = QLabel("📋")
         total_icon.setFont(QFont("Segoe UI Emoji", 14))
@@ -53,8 +53,8 @@ class LoginPanel(QWidget):
         card = QFrame()
         card.setObjectName("PanelCard")
         c_lay = QVBoxLayout(card)
-        c_lay.setContentsMargins(14, 12, 14, 14)
-        c_lay.setSpacing(10)
+        c_lay.setContentsMargins(16, 14, 16, 14)
+        c_lay.setSpacing(12)
 
         title_row = QHBoxLayout()
         icon = QLabel("📋")
@@ -116,8 +116,8 @@ class LoginPanel(QWidget):
         log_card = QFrame()
         log_card.setObjectName("PanelCard")
         log_lay = QVBoxLayout(log_card)
-        log_lay.setContentsMargins(14, 10, 14, 10)
-        log_lay.setSpacing(6)
+        log_lay.setContentsMargins(16, 12, 16, 12)
+        log_lay.setSpacing(8)
 
         log_title_row = QHBoxLayout()
         log_icon = QLabel("📝")

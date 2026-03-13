@@ -41,8 +41,8 @@ class GeneratorPanel(QWidget):
 
     def _build(self):
         root = QVBoxLayout(self)
-        root.setContentsMargins(14, 10, 14, 10)
-        root.setSpacing(8)
+        root.setContentsMargins(16, 12, 16, 12)
+        root.setSpacing(12)
 
         # ── Stat boxes ───────────────────────────────────────────
         stats_row = QHBoxLayout()
@@ -112,8 +112,8 @@ class GeneratorPanel(QWidget):
         prompt_card = QFrame()
         prompt_card.setObjectName("PanelCard")
         p_lay = QVBoxLayout(prompt_card)
-        p_lay.setContentsMargins(12, 10, 12, 10)
-        p_lay.setSpacing(8)
+        p_lay.setContentsMargins(14, 12, 14, 12)
+        p_lay.setSpacing(10)
 
         pt_row = QHBoxLayout()
         pt_icon = QLabel("📝")
@@ -163,8 +163,8 @@ class GeneratorPanel(QWidget):
         settings_card = QFrame()
         settings_card.setObjectName("PanelCard")
         s_lay = QVBoxLayout(settings_card)
-        s_lay.setContentsMargins(12, 10, 12, 10)
-        s_lay.setSpacing(8)
+        s_lay.setContentsMargins(14, 12, 14, 12)
+        s_lay.setSpacing(10)
 
         st_row = QHBoxLayout()
         st_icon = QLabel("⚙️")

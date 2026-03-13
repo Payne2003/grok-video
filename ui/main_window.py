@@ -97,6 +97,7 @@ class MainWindow(QMainWindow):
             bg2       = "#161b22"
             bg3       = "#21262d"
             border    = "#30363d"
+            border_light = "#3d444d"
             text      = "#e6edf3"
             text_dim  = "#8b949e"
             accent    = "#58a6ff"
@@ -107,11 +108,13 @@ class MainWindow(QMainWindow):
             purple    = "#bc8cff"
             teal      = "#39d353"
             header_bg = "#010409"
+            shadow    = "0 4px 12px rgba(0, 0, 0, 0.4)"
         else:
             bg        = "#f6f8fa"
             bg2       = "#ffffff"
             bg3       = "#eaeef2"
             border    = "#d0d7de"
+            border_light = "#e5e7eb"
             text      = "#1f2328"
             text_dim  = "#656d76"
             accent    = "#0969da"
@@ -122,13 +125,14 @@ class MainWindow(QMainWindow):
             purple    = "#8250df"
             teal      = "#1a7f37"
             header_bg = "#24292f"
+            shadow    = "0 2px 8px rgba(0, 0, 0, 0.1)"
 
         self.setStyleSheet(f"""
         /* ── Global ── */
         QMainWindow, QWidget {{
             background: {bg};
             color: {text};
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
             font-size: 13px;
         }}
 
@@ -137,19 +141,32 @@ class MainWindow(QMainWindow):
             background: {header_bg};
             border-bottom: 1px solid {border};
         }}
-        QLabel#AppTitle {{ color: {text}; }}
-        QLabel#VerLabel  {{ color: {text_dim}; }}
+        QLabel#AppTitle {{ 
+            color: {text}; 
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }}
+        QLabel#VerLabel  {{ 
+            color: {text_dim};
+            font-weight: 500;
+        }}
 
         QPushButton#BtnUpdate {{
-            background: {orange};
+            background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #e3a020, stop:1 {orange});
             color: #ffffff;
             border: none;
             border-radius: 6px;
             padding: 0 16px;
             font-weight: 600;
             font-size: 12px;
+            transition: all 0.2s ease;
         }}
-        QPushButton#BtnUpdate:hover {{ background: #b08020; }}
+        QPushButton#BtnUpdate:hover {{ 
+            background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #f0a830, stop:1 #e0a020);
+        }}
+        QPushButton#BtnUpdate:pressed {{ background: #b08020; }}
+        
         QPushButton#BtnDark {{
             background: {bg3};
             color: {text};
@@ -157,8 +174,13 @@ class MainWindow(QMainWindow):
             border-radius: 6px;
             padding: 0 16px;
             font-size: 12px;
+            transition: all 0.2s ease;
         }}
-        QPushButton#BtnDark:hover {{ background: {border}; }}
+        QPushButton#BtnDark:hover {{ 
+            background: {border_light};
+            border-color: {accent};
+        }}
+        QPushButton#BtnDark:pressed {{ background: {border}; }}
 
         /* ── Tabs ── */
         QTabWidget#MainTabs::pane {{
@@ -173,11 +195,13 @@ class MainWindow(QMainWindow):
             font-size: 13px;
             font-weight: 500;
             margin-right: 2px;
+            transition: all 0.2s ease;
         }}
         QTabWidget#MainTabs QTabBar::tab:selected {{
             background: {accent2};
             color: #ffffff;
-            border-radius: 0;
+            border-radius: 6px 6px 0 0;
+            font-weight: 600;
         }}
         QTabWidget#MainTabs QTabBar::tab:hover:!selected {{
             background: {bg3};
@@ -188,135 +212,238 @@ class MainWindow(QMainWindow):
         QFrame#PanelCard {{
             background: {bg2};
             border: 1px solid {border};
-            border-radius: 8px;
+            border-radius: 10px;
         }}
         QLabel#SectionTitle {{
             color: {text};
             font-size: 14px;
-            font-weight: 600;
+            font-weight: 700;
+            letter-spacing: -0.3px;
         }}
 
         /* ── Stat Boxes ── */
-        QFrame#StatTotal   {{ background: {bg2}; border: 2px solid {accent};  border-radius: 8px; }}
-        QFrame#StatRunning {{ background: {bg2}; border: 2px solid {orange};  border-radius: 8px; }}
-        QFrame#StatDone    {{ background: {bg2}; border: 2px solid {green};   border-radius: 8px; }}
-        QFrame#StatError   {{ background: {bg2}; border: 2px solid {red};     border-radius: 8px; }}
+        QFrame#StatTotal   {{ 
+            background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 {bg2}, stop:1 {bg3});
+            border: 2px solid {accent};  
+            border-radius: 10px;
+            padding: 2px;
+        }}
+        QFrame#StatRunning {{ 
+            background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 {bg2}, stop:1 {bg3});
+            border: 2px solid {orange};  
+            border-radius: 10px;
+            padding: 2px;
+        }}
+        QFrame#StatDone    {{ 
+            background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 {bg2}, stop:1 {bg3});
+            border: 2px solid {green};   
+            border-radius: 10px;
+            padding: 2px;
+        }}
+        QFrame#StatError   {{ 
+            background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 {bg2}, stop:1 {bg3});
+            border: 2px solid {red};     
+            border-radius: 10px;
+            padding: 2px;
+        }}
 
-        QLabel#StatNumTotal   {{ color: {accent};  font-size: 36px; font-weight: 700; }}
-        QLabel#StatNumRunning {{ color: {orange};  font-size: 36px; font-weight: 700; }}
-        QLabel#StatNumDone    {{ color: {green};   font-size: 36px; font-weight: 700; }}
-        QLabel#StatNumError   {{ color: {red};     font-size: 36px; font-weight: 700; }}
-        QLabel#StatLabel      {{ color: {text_dim}; font-size: 12px; }}
+        QLabel#StatNumTotal   {{ color: {accent};  font-size: 36px; font-weight: 800; }}
+        QLabel#StatNumRunning {{ color: {orange};  font-size: 36px; font-weight: 800; }}
+        QLabel#StatNumDone    {{ color: {green};   font-size: 36px; font-weight: 800; }}
+        QLabel#StatNumError   {{ color: {red};     font-size: 36px; font-weight: 800; }}
+        QLabel#StatLabel      {{ color: {text_dim}; font-size: 12px; font-weight: 600; }}
 
         /* ── Table ── */
         QTableWidget {{
             background: {bg2};
             border: 1px solid {border};
-            border-radius: 6px;
+            border-radius: 8px;
             gridline-color: {border};
             color: {text};
             selection-background-color: {accent2};
         }}
-        QTableWidget::item {{ padding: 4px 8px; }}
+        QTableWidget::item {{ padding: 6px 8px; }}
+        QTableWidget::item:hover {{ background: {bg3}; }}
         QHeaderView::section {{
-            background: {bg3};
+            background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 {bg3}, stop:1 {bg2});
             color: {text_dim};
             border: none;
             border-bottom: 1px solid {border};
-            padding: 6px 8px;
+            padding: 8px;
             font-weight: 600;
             font-size: 12px;
         }}
         QTableWidget::item:selected {{ background: {accent2}; color: #fff; }}
 
         /* ── Buttons ── */
-        QPushButton {{ border-radius: 5px; padding: 6px 14px; font-size: 12px; font-weight: 500; border: none; }}
+        QPushButton {{ 
+            border-radius: 6px; 
+            padding: 6px 14px; 
+            font-size: 12px; 
+            font-weight: 500; 
+            border: none;
+            transition: all 0.15s ease;
+        }}
 
-        QPushButton#BtnGreen  {{ background: #238636; color: #fff; }}
-        QPushButton#BtnGreen:hover  {{ background: #2ea043; }}
-        QPushButton#BtnBlue   {{ background: {accent2}; color: #fff; }}
-        QPushButton#BtnBlue:hover   {{ background: {accent}; }}
-        QPushButton#BtnRed    {{ background: #da3633; color: #fff; }}
-        QPushButton#BtnRed:hover    {{ background: #f85149; }}
-        QPushButton#BtnOrange {{ background: {orange}; color: #fff; }}
-        QPushButton#BtnOrange:hover {{ background: #e3a020; }}
-        QPushButton#BtnTeal   {{ background: #1f6a5c; color: #fff; }}
-        QPushButton#BtnTeal:hover   {{ background: #27865e; }}
-        QPushButton#BtnPurple {{ background: #6e40c9; color: #fff; }}
-        QPushButton#BtnPurple:hover {{ background: {purple}; }}
+        QPushButton#BtnGreen  {{ background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #2ea043, stop:1 #238636); color: #fff; }}
+        QPushButton#BtnGreen:hover  {{ background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #3fb950, stop:1 #2ea043); }}
+        QPushButton#BtnGreen:pressed  {{ background: #238636; }}
+        
+        QPushButton#BtnBlue   {{ background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 {accent}, stop:1 {accent2}); color: #fff; }}
+        QPushButton#BtnBlue:hover   {{ background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #6db3f2, stop:1 {accent}); }}
+        QPushButton#BtnBlue:pressed   {{ background: {accent2}; }}
+        
+        QPushButton#BtnRed    {{ background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #f85149, stop:1 #da3633); color: #fff; }}
+        QPushButton#BtnRed:hover    {{ background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #fa7a6d, stop:1 #f85149); }}
+        QPushButton#BtnRed:pressed    {{ background: #da3633; }}
+        
+        QPushButton#BtnOrange {{ background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #e3a020, stop:1 {orange}); color: #fff; }}
+        QPushButton#BtnOrange:hover {{ background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #f0a830, stop:1 #e3a020); }}
+        QPushButton#BtnOrange:pressed {{ background: {orange}; }}
+        
+        QPushButton#BtnTeal   {{ background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #27865e, stop:1 #1f6a5c); color: #fff; }}
+        QPushButton#BtnTeal:hover   {{ background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #2ba06f, stop:1 #27865e); }}
+        QPushButton#BtnTeal:pressed   {{ background: #1f6a5c; }}
+        
+        QPushButton#BtnPurple {{ background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #8250df, stop:1 #6e40c9); color: #fff; }}
+        QPushButton#BtnPurple:hover {{ background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 {purple}, stop:1 #8250df); }}
+        QPushButton#BtnPurple:pressed {{ background: #6e40c9; }}
+        
         QPushButton#BtnGray   {{ background: {bg3}; color: {text}; border: 1px solid {border}; }}
-        QPushButton#BtnGray:hover   {{ background: {border}; }}
-        QPushButton#BtnCyan   {{ background: #0e7490; color: #fff; }}
-        QPushButton#BtnCyan:hover   {{ background: #0891b2; }}
+        QPushButton#BtnGray:hover   {{ background: {border_light}; border-color: {accent}; }}
+        QPushButton#BtnGray:pressed   {{ background: {border}; }}
+        
+        QPushButton#BtnCyan   {{ background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #0891b2, stop:1 #0e7490); color: #fff; }}
+        QPushButton#BtnCyan:hover   {{ background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #06b6d4, stop:1 #0891b2); }}
+        QPushButton#BtnCyan:pressed   {{ background: #0e7490; }}
 
         /* Tab-like toggle buttons */
         QPushButton#TabToggle {{
-            background: {accent2};
+            background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 {accent}, stop:1 {accent2});
             color: #fff;
-            border-radius: 5px;
+            border-radius: 6px;
             padding: 6px 18px;
             font-weight: 600;
+            border: none;
+        }}
+        QPushButton#TabToggle:hover {{
+            background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #6db3f2, stop:1 {accent});
         }}
         QPushButton#TabToggleOff {{
             background: {bg3};
             color: {text_dim};
-            border-radius: 5px;
+            border-radius: 6px;
             padding: 6px 18px;
+            border: 1px solid {border};
+            transition: all 0.15s ease;
+        }}
+        QPushButton#TabToggleOff:hover {{
+            background: {border_light};
+            color: {text};
+            border-color: {accent};
         }}
 
         /* ── Inputs ── */
         QTextEdit, QLineEdit {{
             background: {bg3};
             border: 1px solid {border};
-            border-radius: 5px;
+            border-radius: 6px;
+            color: {text};
+            padding: 8px 10px;
+            font-size: 12px;
+            selection-background-color: {accent2};
+        }}
+        QTextEdit:focus, QLineEdit:focus {{ 
+            border: 1px solid {accent}; 
+            outline: none;
+        }}
+        QComboBox {{
+            background: {bg3};
+            border: 1px solid {border};
+            border-radius: 6px;
             color: {text};
             padding: 6px 10px;
             font-size: 12px;
         }}
-        QTextEdit:focus, QLineEdit:focus {{ border-color: {accent}; }}
-        QComboBox {{
-            background: {bg3};
+        QComboBox:focus {{ border-color: {accent}; }}
+        QComboBox QAbstractItemView {{ 
+            background: {bg2}; 
+            color: {text}; 
             border: 1px solid {border};
-            border-radius: 5px;
-            color: {text};
-            padding: 4px 10px;
+            selection-background-color: {accent2};
         }}
-        QComboBox QAbstractItemView {{ background: {bg3}; color: {text}; border: 1px solid {border}; }}
 
         /* ── ScrollBar ── */
         QScrollBar:vertical {{
-            background: {bg2}; width: 8px; margin: 0;
+            background: {bg}; 
+            width: 10px; 
+            margin: 0;
         }}
         QScrollBar::handle:vertical {{
-            background: {border}; border-radius: 4px; min-height: 20px;
+            background: {border}; 
+            border-radius: 5px; 
+            min-height: 24px;
+            margin: 2px;
+        }}
+        QScrollBar::handle:vertical:hover {{
+            background: {border_light};
         }}
         QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {{ height: 0; }}
 
         /* ── Status badge ── */
-        QLabel#BadgeGreen  {{ background: #238636; color: #fff; border-radius: 4px; padding: 2px 10px; font-size: 11px; font-weight: 600; }}
-        QLabel#BadgeOrange {{ background: {orange}; color: #fff; border-radius: 4px; padding: 2px 10px; font-size: 11px; font-weight: 600; }}
-        QLabel#BadgeRed    {{ background: #da3633; color: #fff; border-radius: 4px; padding: 2px 10px; font-size: 11px; font-weight: 600; }}
+        QLabel#BadgeGreen  {{ 
+            background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #3fb950, stop:1 #238636); 
+            color: #fff; 
+            border-radius: 5px; 
+            padding: 3px 10px; 
+            font-size: 11px; 
+            font-weight: 600; 
+        }}
+        QLabel#BadgeOrange {{ 
+            background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 {orange}, stop:1 #b08020); 
+            color: #fff; 
+            border-radius: 5px; 
+            padding: 3px 10px; 
+            font-size: 11px; 
+            font-weight: 600; 
+        }}
+        QLabel#BadgeRed    {{ 
+            background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #f85149, stop:1 #da3633); 
+            color: #fff; 
+            border-radius: 5px; 
+            padding: 3px 10px; 
+            font-size: 11px; 
+            font-weight: 600; 
+        }}
 
         /* ── Log area ── */
         QTextEdit#LogArea {{
             background: {bg3};
             border: 1px solid {border};
-            border-radius: 6px;
+            border-radius: 8px;
             color: {teal};
-            font-family: 'Consolas', monospace;
+            font-family: 'Cascadia Code', 'Consolas', monospace;
             font-size: 11px;
+            padding: 8px;
         }}
 
         /* ── Ready bar ── */
         QFrame#ReadyBar {{
-            background: {bg2};
+            background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 {bg2}, stop:1 {bg3});
             border: 1px solid {green};
-            border-radius: 5px;
+            border-radius: 8px;
         }}
-        QLabel#ReadyLabel {{ color: {green}; font-weight: 600; }}
+        QLabel#ReadyLabel {{ 
+            color: {green}; 
+            font-weight: 600;
+            font-size: 12px;
+        }}
 
         /* ── Splitter ── */
-        QSplitter::handle {{ background: {border}; width: 1px; }}
+        QSplitter::handle {{ 
+            background: {border}; 
+            width: 1px;
+        }}
 
         QLabel {{ color: {text}; }}
         """)
