@@ -10,7 +10,7 @@ from ui.generator_panel import GeneratorPanel
 from ui.image_panel import ImagePanel
 from ui.extend_panel import ExtendPanel
 from ui.history_panel import HistoryPanel
-
+from controllers.generator_controller import GeneratorController
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -26,7 +26,6 @@ class MainWindow(QMainWindow):
         root = QVBoxLayout(central)
         root.setContentsMargins(0, 0, 0, 0)
         root.setSpacing(0)
-
         # ── Header ──────────────────────────────────────────────
         header = QFrame()
         header.setObjectName("AppHeader")
@@ -75,7 +74,8 @@ class MainWindow(QMainWindow):
         self.image_panel     = ImagePanel()
         self.extend_panel    = ExtendPanel()
         self.history_panel   = HistoryPanel()
-
+        # thêm dòng này
+        self.generator_controller = GeneratorController(self.generator_panel)
         self.tabs.addTab(self.login_panel,     "👤  Tài khoản")
         self.tabs.addTab(self.generator_panel, "🎬  Tạo Video")
         self.tabs.addTab(self.image_panel,     "🖼️  Tạo Ảnh")

@@ -1,3 +1,14 @@
-2026/03/13-17:17:16.279 1b4 Reusing MANIFEST D:\grok-video-tool\profiles\account_02\Default\Local Storage\leveldb/MANIFEST-000001
-2026/03/13-17:17:16.282 1b4 Recovering log #11
-2026/03/13-17:17:16.282 1b4 Reusing old log D:\grok-video-tool\profiles\account_02\Default\Local Storage\leveldb/000011.log 
+2026/03/14-12:20:47.703 5354 Reusing MANIFEST D:\grok-video-tool\profiles\account_02\Default\Local Storage\leveldb/MANIFEST-000001
+2026/03/14-12:20:47.706 5354 Recovering log #11
+2026/03/14-12:20:47.706 5354 Level-0 table #15: started
+2026/03/14-12:20:47.753 5354 Level-0 table #15: 61299 bytes OK
+2026/03/14-12:20:47.753 5354 Recovering log #15
+2026/03/14-12:20:47.754 5354 Reusing old log D:\grok-video-tool\profiles\account_02\Default\Local Storage\leveldb/000015.log 
+2026/03/14-12:20:47.775 5354 Delete type=0 #11
+2026/03/14-12:20:47.775 5354 Delete type=2 #16
+2026/03/14-12:21:16.223 4208 Level-0 table #17: started
+2026/03/14-12:21:16.321 4208 Level-0 table #17: 59564 bytes OK
+2026/03/14-12:21:16.357 4208 Delete type=0 #15
+2026/03/14-12:21:40.990 5354 Level-0 table #19: started
+2026/03/14-12:21:41.156 5354 Level-0 table #19: 59804 bytes OK
+2026/03/14-12:21:41.223 5354 Delete type=0 #16
