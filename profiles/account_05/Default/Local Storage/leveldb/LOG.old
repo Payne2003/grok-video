@@ -1,0 +1,4 @@
+2026/03/17-12:39:03.121 4128 Creating DB D:\grok-video-tool\profiles\account_05\Default\Local Storage\leveldb since it was missing.
+2026/03/17-12:39:04.212 4128 Reusing MANIFEST D:\grok-video-tool\profiles\account_05\Default\Local Storage\leveldb/MANIFEST-000001
+2026/03/17-12:40:55.554 4128 Level-0 table #5: started
+2026/03/17-12:40:56.620 4128 Level-0 table #5: 78965 bytes OK

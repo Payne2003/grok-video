@@ -13,6 +13,14 @@ from PySide6.QtGui import QFont, QColor
 from accounts.account_controller import AccountController
 from ui.account_dialog import AccountDialog
 
+# ── THÊM MỚI ──────────────────────────────────────────────────
+from auth.auto_login import (
+    AutoLoginWorker, AutoLoginAllWorker, LoginConfig, load_coords
+)
+from ui.coord_picker_dialog import CoordPickerDialog
+from pathlib import Path
+# ──────────────────────────────────────────────────────────────
+
 _STATUS_BG = {
     "logged_in":  "#238636",
     "pending":    "#9e6a03",
@@ -38,6 +46,9 @@ class LoginPanel(QWidget):
         self._states: dict = {}
         self._build()
         self._refresh()
+        # ── THÊM MỚI ──────────────────────────────────────────
+        self._auto_workers: dict = {}  # slot → AutoLoginWorker
+        # ──────────────────────────────────────────────────────
 
     # ─────────────────────────── BUILD ───────────────────────────
     def _build(self):
@@ -121,6 +132,25 @@ class LoginPanel(QWidget):
         self.btn_save.clicked.connect(self._on_save_session)
         br.addWidget(self.btn_login)
         br.addWidget(self.btn_save)
+
+        # ── THÊM MỚI: separator + 3 nút auto login ───────────────
+        sep2 = QFrame(); sep2.setFrameShape(QFrame.VLine)
+        sep2.setFixedHeight(28); sep2.setObjectName("VSep")
+        br.addSpacing(4); br.addWidget(sep2); br.addSpacing(4)
+
+        self.btn_auto_one  = _btn("🤖 Auto Login", "BtnTeal", 34)
+        self.btn_auto_all  = _btn("🤖 Login All",  "BtnTeal", 34)
+        self.btn_calibrate = _btn("🎯 Tọa độ",     "BtnGray", 34)
+        self.btn_auto_one.setToolTip("Tự động đăng nhập account đang chọn")
+        self.btn_auto_all.setToolTip("Tự động đăng nhập tất cả accounts")
+        self.btn_calibrate.setToolTip("Cấu hình tọa độ màn hình")
+        self.btn_auto_one.clicked.connect(self._on_auto_one)
+        self.btn_auto_all.clicked.connect(self._on_auto_all)
+        self.btn_calibrate.clicked.connect(self._on_calibrate)
+        br.addWidget(self.btn_auto_one)
+        br.addWidget(self.btn_auto_all)
+        br.addWidget(self.btn_calibrate)
+        # ─────────────────────────────────────────────────────────
 
         br.addSpacing(4)
         # Import / Export
@@ -370,3 +400,116 @@ class LoginPanel(QWidget):
         path, _ = QFileDialog.getSaveFileName(
             self, "Export TXT", "accounts.txt", "Text files (*.txt)")
         if path: self._log(f"📤 {self.ctrl.export_txt(path)}")
+
+    # ── THÊM MỚI: AUTO LOGIN ─────────────────────────────────────
+
+    def _on_calibrate(self):
+        """Mở dialog cấu hình tọa độ màn hình."""
+        dlg = CoordPickerDialog(self)
+        dlg.exec()
+
+    def _on_auto_one(self):
+        """Auto login 1 account đang chọn."""
+        slot = self._first_slot()
+        if not slot:
+            QMessageBox.information(self, "Thông báo",
+                "Chọn 1 tài khoản để Auto Login!"); return
+        self._run_auto_queue([slot])
+
+    def _on_auto_all(self):
+        """Auto login TẤT CẢ accounts CÙNG LÚC (song song)."""
+        rows  = self.ctrl.get_rows()
+        slots = [r.slot for r in rows]
+        if not slots:
+            QMessageBox.information(self, "Thông báo",
+                "Không có tài khoản nào!"); return
+        reply = QMessageBox.question(
+            self, "Login All (Song song)",
+            f"Tự động đăng nhập {len(slots)} tài khoản CÙNG LÚC?\n\n"
+            f"Mỗi account mở 1 Chrome riêng → chạy song song.\n"
+            f"⚠️  Nếu có Cloudflare, cần click vào từng cửa sổ.",
+            QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+        if reply != QMessageBox.Yes: return
+
+        # Đánh dấu tất cả đang "opening"
+        for slot in slots:
+            self._set_state(slot, "opening")
+
+        # Dùng AutoLoginAllWorker — chạy song song tất cả
+        w = AutoLoginAllWorker(slots)
+        w.log_msg.connect(self._log)
+        w.slot_done.connect(self._on_auto_done_parallel)
+        w.all_done.connect(lambda: self._log("🏁 Hoàn thành Login All"))
+        self._auto_workers["__all__"] = w
+        w.start()
+
+    def _on_auto_done_parallel(self, slot: str, ok: bool, msg: str):
+        """Callback khi 1 slot trong parallel batch xong."""
+        self._set_state(slot, None)
+        self._log(f"{'✅' if ok else '❌'} [{slot}] {msg}")
+        if ok:
+            self._log(f"[{slot}] 💾 Tự động lưu session...")
+            self.ctrl.save_session(
+                slot   = slot,
+                on_log = self._log,
+                on_done= lambda s, o, m:
+                    self._log(f"{'✅' if o else '❌'} [{s}] Session: {m}"),
+            )
+
+    def _run_auto_queue(self, slots: list):
+        """Lấy slot đầu queue, chạy AutoLoginWorker, khi xong gọi tiếp slot sau."""
+        if not slots: return
+        slot = slots[0]
+        rest = slots[1:]
+
+        if slot in self._auto_workers:
+            self._log(f"[{slot}] ⚠️  Đang chạy, bỏ qua"); return
+
+        # LoginConfig tự đọc email/password từ accounts/<slot>/info.json
+        cfg = LoginConfig(
+            slot   = slot,
+            coords = load_coords(),
+        )
+
+        if not cfg.email or not cfg.password:
+            self._log(f"[{slot}] ❌ Không tìm thấy email/password trong info.json")
+            if rest:
+                self._run_auto_queue(rest)
+            return
+
+        self._log(f"[{slot}] 🤖 Auto login: {cfg.email}")
+        self._set_state(slot, "opening")
+
+        w = AutoLoginWorker(cfg)
+        w.log_msg.connect(self._log)
+        w.finished.connect(
+            lambda s, ok, msg, _rest=rest:
+                self._on_auto_done(s, ok, msg, _rest)
+        )
+        self._auto_workers[slot] = w
+        w.start()
+
+    def _on_auto_done(self, slot: str, ok: bool, msg: str, remaining: list):
+        """Callback khi 1 auto login xong → tự lưu session + chạy slot tiếp."""
+        self._auto_workers.pop(slot, None)
+        self._set_state(slot, None)
+        self._log(f"{'✅' if ok else '❌'} [{slot}] {msg}")
+
+        if ok:
+            self._log(f"[{slot}] 💾 Tự động lưu session...")
+            self.ctrl.save_session(
+                slot   = slot,
+                on_log = self._log,
+                on_done= lambda s, o, m:
+                    self._log(f"{'✅' if o else '❌'} [{s}] Session: {m}"),
+            )
+
+        if remaining:
+            self._log(f"⏭  Chuyển sang: {remaining[0]} (sau 3s...)")
+            # Dùng QTimer thay time.sleep để không block UI
+            from PySide6.QtCore import QTimer
+            QTimer.singleShot(3000, lambda: self._run_auto_queue(remaining))
+        else:
+            self._log("🏁 Hoàn thành Login All")
+
+    # ─────────────────────────────────────────────────────────────

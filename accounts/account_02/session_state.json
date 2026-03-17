@@ -1,24 +1,24 @@
 {
   "version": 1,
-  "saved_at": "2026-03-14T05:22:16.819355+00:00",
+  "saved_at": "2026-03-17T05:42:08.528192+00:00",
   "cookie_count": 10,
   "cookies": [
     {
-      "name": "_twpid",
-      "value": "tw.1773396627655.933727158165883925",
+      "name": "mp_ea93da913ddb66b6372b89d97b1029ac_mixpanel",
+      "value": "%7B%22distinct_id%22%3A%229800921e-a20c-446c-8935-77838b989a00%22%2C%22%24device_id%22%3A%220ec57ca8-5e1a-4a29-a74f-3e62436571ee%22%2C%22%24initial_referrer%22%3A%22https%3A%2F%2Faccounts.x.ai%2F%22%2C%22%24initial_referring_domain%22%3A%22accounts.x.ai%22%2C%22%24user_id%22%3A%229800921e-a20c-446c-8935-77838b989a00%22%7D",
       "domain": ".grok.com",
       "path": "/",
-      "expires": 1807092627.684127,
+      "expires": 1805262074,
       "httpOnly": false,
-      "secure": true,
-      "sameSite": "Strict"
+      "secure": false,
+      "sameSite": "Lax"
     },
     {
       "name": "_ga",
-      "value": "GA1.1.898459490.1773396629",
+      "value": "GA1.1.224065119.1773726073",
       "domain": ".grok.com",
       "path": "/",
-      "expires": 1808025701.297992,
+      "expires": 1808286072.979785,
       "httpOnly": false,
       "secure": false,
       "sameSite": "Lax"
@@ -28,52 +28,72 @@
       "value": "vi",
       "domain": "grok.com",
       "path": "/",
-      "expires": 1805001701,
+      "expires": 1805262073,
       "httpOnly": false,
       "secure": false,
       "sameSite": "Strict"
     },
     {
-      "name": "__cf_bm",
-      "value": "kxEQh2XtU40IGngFke_F5vxJCpabrKI6PTXkCes4YiQ-1773465617-1.0.1.1-FPqWVfKojJOXiga1eZn_M6GCWnpdfoMdVfhbir5gRYYnxikLGXy.Reqib0l5FdP5Ie2sy.DnAZcpvhBE7WTtu8ajgTKw9SIjgqboukWDglE",
+      "name": "_ga_8FEWB057YH",
+      "value": "GS2.1.s1773726072$o1$g0$t1773726073$j59$l0$h0",
       "domain": ".grok.com",
       "path": "/",
-      "expires": 1773467417.203322,
-      "httpOnly": true,
-      "secure": true,
-      "sameSite": "None"
+      "expires": 1808286073.031986,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
     },
     {
-      "name": "cf_clearance",
-      "value": "NKLseJSCpFGWbooRDfqloyAgKAGZmaxIxpNVrsZmv5o-1773465620-1.2.1.1-XubJaro1ToxoSqlx7D_tojdsnJPL.eI5wbC6ULyKKjWYhMrJb99yWajgiMAWd8Tye4VxR69GshatuT.d6wfVWB5PuKq5O4Bo79nu31Z2V1QkcbA0vaOIxBgkCav01aHNDdcBk._nFAf1sBc8TE1XMjIpvOeXNRSA6k7kJSMf3dL2RzvMhKGZO2_slBDT6zaDfLKS65zq1M49jtkFuGy00aBqsau4MmQLAnhdN3XymzGDiZXeK00jv29V.g51WwNe",
+      "name": "_twpid",
+      "value": "tw.1773726073623.799137162879713477",
       "domain": ".grok.com",
       "path": "/",
-      "expires": 1805001620.574279,
-      "httpOnly": true,
+      "expires": 1807422073.624886,
+      "httpOnly": false,
       "secure": true,
-      "sameSite": "None",
-      "partitionKey": "https://grok.com",
-      "_crHasCrossSiteAncestor": false
+      "sameSite": "Strict"
     },
     {
       "name": "sso",
-      "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzZXNzaW9uX2lkIjoiZmEzZWE2MmMtYmM5MS00ZTFlLThkZjUtYjIxNTg1NDc3YzVkIn0.YjwvPFyCXsJyqwU0uwxYpA67_sZwdOObiFpyfhyz1sw",
+      "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzZXNzaW9uX2lkIjoiODM4NTlhN2ItNzIxZi00ZTgzLTkyNWItOGM4ZDg3MTcwMmIzIn0.zZSouXHD9PRYIcvTZlBQm7aKcwOYJsybLP-zJMZZ3ks",
       "domain": ".grok.com",
       "path": "/",
-      "expires": 1789017699.149717,
+      "expires": 1789278108.241983,
       "httpOnly": true,
       "secure": true,
       "sameSite": "Lax"
     },
     {
       "name": "sso-rw",
-      "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzZXNzaW9uX2lkIjoiZmEzZWE2MmMtYmM5MS00ZTFlLThkZjUtYjIxNTg1NDc3YzVkIn0.YjwvPFyCXsJyqwU0uwxYpA67_sZwdOObiFpyfhyz1sw",
+      "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzZXNzaW9uX2lkIjoiODM4NTlhN2ItNzIxZi00ZTgzLTkyNWItOGM4ZDg3MTcwMmIzIn0.zZSouXHD9PRYIcvTZlBQm7aKcwOYJsybLP-zJMZZ3ks",
       "domain": ".grok.com",
       "path": "/",
-      "expires": 1789017699.149795,
+      "expires": 1789278108.242155,
       "httpOnly": true,
       "secure": true,
       "sameSite": "Strict"
+    },
+    {
+      "name": "__cf_bm",
+      "value": "2hMWHSnk5aHeGyMVT28SB8U75lzVYN_sR6fkTsQumOA-1773726108-1.0.1.1-_ErmsV.5We1_HdEbzNMdyL3xn5Qqnvl.FXegxH3N9CJEDDP0xXhxL2UHOjMVeArm7tXBSuYSn7ze1G.KMN6m9uOZ3fOgV5V9zuwjhxg1CBQ",
+      "domain": ".grok.com",
+      "path": "/",
+      "expires": 1773727908.242217,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "cf_clearance",
+      "value": "eJeth7SNQ5okcaK0tqBxkAjjDty.wjW9zmK9wtHz_SM-1773726122-1.2.1.1-nhvpOZ7aAgRul9LU8oWmuZAD33S2plf8q.fWP4wci6RrKv7CvhSgQ4aBF2geZTEHpCtQ5v1aoVYdBwuCZU8I.5ZvNbwaajGBDmi2aFRpgIjxqjGdQyKFlEMmvr3XWVejIP4t2hBFPHWwECwdaCEvMGCFkZ5usA9CT1fO69DBOl80rLMhxvuUObm1dQicI_0AmcVUnk.bPcMHvH4evJprCExYLnH_SkCAqKEnfWKM4tI",
+      "domain": ".grok.com",
+      "path": "/",
+      "expires": 1805262121.647155,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None",
+      "partitionKey": "https://grok.com",
+      "_crHasCrossSiteAncestor": false
     },
     {
       "name": "x-userid",
@@ -84,26 +104,6 @@
       "httpOnly": false,
       "secure": true,
       "sameSite": "None"
-    },
-    {
-      "name": "mp_ea93da913ddb66b6372b89d97b1029ac_mixpanel",
-      "value": "%7B%22distinct_id%22%3A%229800921e-a20c-446c-8935-77838b989a00%22%2C%22%24device_id%22%3A%22549b2090-8bb0-4fb0-a193-7037e3abf002%22%2C%22%24initial_referrer%22%3A%22https%3A%2F%2Fgrok.com%2F%3F__cf_chl_tk%3DwxUNyvC_tjeTL8_Rxn.HwlAj4OPnwwAvx7.pZ6xC4gI-1773396619-1.0.1.1-pdEnoIlT7xdT7kHMhFTIOZvuKzxW2l.PMyULSPCWd0c%22%2C%22%24initial_referring_domain%22%3A%22grok.com%22%2C%22__mps%22%3A%7B%7D%2C%22__mpso%22%3A%7B%7D%2C%22__mpus%22%3A%7B%7D%2C%22__mpa%22%3A%7B%7D%2C%22__mpu%22%3A%7B%7D%2C%22__mpr%22%3A%5B%5D%2C%22__mpap%22%3A%5B%5D%2C%22%24user_id%22%3A%229800921e-a20c-446c-8935-77838b989a00%22%7D",
-      "domain": ".grok.com",
-      "path": "/",
-      "expires": 1805001736,
-      "httpOnly": false,
-      "secure": false,
-      "sameSite": "Lax"
-    },
-    {
-      "name": "_ga_8FEWB057YH",
-      "value": "GS2.1.s1773465620$o2$g1$t1773465736$j25$l0$h0",
-      "domain": ".grok.com",
-      "path": "/",
-      "expires": 1808025736.599219,
-      "httpOnly": false,
-      "secure": false,
-      "sameSite": "Lax"
     }
   ]
 }

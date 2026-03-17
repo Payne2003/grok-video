@@ -181,13 +181,20 @@ class AccountStore:
                     line = line.strip()
                     if not line or line.startswith("#"):
                         continue
-                    parts = line.split(":", 1)
+
+                    parts = line.split("|")
+
                     email = parts[0].strip()
-                    pwd   = parts[1].strip() if len(parts) > 1 else ""
+                    pwd = parts[1].strip() if len(parts) > 1 else ""
+                    token = parts[2].strip() if len(parts) > 2 else ""
+
+                    # nếu cần lưu token thì sửa hàm add
                     if email and self.add(email, pwd):
                         added += 1
+
         except OSError:
             pass
+
         return added
 
     def export_to_txt(self, path: str):

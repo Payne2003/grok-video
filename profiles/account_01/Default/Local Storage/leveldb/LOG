@@ -1,17 +1,6 @@
-2026/03/13-17:09:58.023 41ac Reusing MANIFEST D:\grok-video-tool\profiles\account_01\Default\Local Storage\leveldb/MANIFEST-000001
-2026/03/13-17:09:58.026 41ac Recovering log #22
-2026/03/13-17:09:58.026 41ac Level-0 table #24: started
-2026/03/13-17:09:58.051 41ac Level-0 table #24: 55521 bytes OK
-2026/03/13-17:09:58.066 41ac Delete type=0 #22
-2026/03/13-17:09:58.067 5a50 Compacting 4@0 + 1@1 files
-2026/03/13-17:09:58.102 5a50 Generated table #26@0: 286 keys, 62090 bytes
-2026/03/13-17:09:58.102 5a50 Compacted 4@0 + 1@1 files => 62090 bytes
-2026/03/13-17:09:58.182 5a50 compacted to: files[ 0 1 1 0 0 0 0 ]
-2026/03/13-17:09:58.183 5a50 Delete type=2 #14
-2026/03/13-17:09:58.183 5a50 Delete type=2 #17
-2026/03/13-17:09:58.183 5a50 Delete type=2 #19
-2026/03/13-17:09:58.183 5a50 Delete type=2 #21
-2026/03/13-17:09:58.183 5a50 Delete type=2 #24
-2026/03/13-17:10:59.312 41ac Level-0 table #28: started
-2026/03/13-17:10:59.351 41ac Level-0 table #28: 58362 bytes OK
-2026/03/13-17:10:59.372 41ac Delete type=0 #25
+2026/03/17-12:41:09.282 6d6c Reusing MANIFEST D:\grok-video-tool\profiles\account_01\Default\Local Storage\leveldb/MANIFEST-000001
+2026/03/17-12:41:09.289 6d6c Recovering log #56
+2026/03/17-12:41:09.292 6d6c Reusing old log D:\grok-video-tool\profiles\account_01\Default\Local Storage\leveldb/000056.log 
+2026/03/17-12:42:11.641 3b7c Level-0 table #61: started
+2026/03/17-12:42:12.637 3b7c Level-0 table #61: 78206 bytes OK
+2026/03/17-12:42:13.130 3b7c Delete type=0 #56

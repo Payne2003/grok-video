@@ -1,0 +1,5 @@
+2026/03/17-12:39:00.941 6da8 Reusing MANIFEST D:\grok-video-tool\profiles\account_03\Default\Local Storage\leveldb/MANIFEST-000001
+2026/03/17-12:39:00.949 6da8 Recovering log #3
+2026/03/17-12:39:00.952 6da8 Reusing old log D:\grok-video-tool\profiles\account_03\Default\Local Storage\leveldb/000003.log 
+2026/03/17-12:40:58.446 6030 Level-0 table #5: started
+2026/03/17-12:40:59.208 6030 Level-0 table #5: 78616 bytes OK

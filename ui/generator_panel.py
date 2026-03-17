@@ -371,7 +371,7 @@ class GeneratorPanel(QWidget):
         lay.setContentsMargins(8, 12, 12, 12)
         lay.setSpacing(6)
 
-        # Main table
+        # Main table — 3 cột sạch, không nhét nút vào cell
         self.table = QTableWidget()
         self.table.setColumnCount(3)
         self.table.setHorizontalHeaderLabels(["#", "Prompt / File", "Trạng thái"])
@@ -379,31 +379,42 @@ class GeneratorPanel(QWidget):
         hh.setSectionResizeMode(0, QHeaderView.Fixed)
         hh.setSectionResizeMode(1, QHeaderView.Stretch)
         hh.setSectionResizeMode(2, QHeaderView.Fixed)
-        self.table.setColumnWidth(0, 40)
-        self.table.setColumnWidth(2, 110)
+        self.table.setColumnWidth(0, 42)
+        self.table.setColumnWidth(2, 100)
         self.table.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.table.setEditTriggers(QAbstractItemView.NoEditTriggers)
         self.table.verticalHeader().setVisible(False)
+        self.table.verticalHeader().setDefaultSectionSize(28)
         self.table.setRowCount(0)
         self.table.setFrameShape(QFrame.NoFrame)
         self.table.setMinimumHeight(200)
         self.table.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         lay.addWidget(self.table, 1)
 
-        # Action buttons
-        ab = QHBoxLayout(); ab.setSpacing(6); ab.addStretch()
-        self.btn_retry_errors = _btn("🔄 Chạy Lại Lỗi", "BtnGray", 32)
-        self.btn_retry_all    = _btn("📋 Tạo Lại All",   "BtnGray", 32)
-        self.btn_retry_one    = _btn("▶️ Tạo Lại",       "BtnBlue", 32)
-        for b in (self.btn_retry_errors, self.btn_retry_all, self.btn_retry_one):
-            ab.addWidget(b)
-        lay.addLayout(ab)
+        # ── Thanh hành động — hiện khi chọn 1 row ─────────────────
+        self.action_bar = QFrame()
+        self.action_bar.setObjectName("ActionBar")
+        ab = QHBoxLayout(self.action_bar)
+        ab.setContentsMargins(8, 6, 8, 6)
+        ab.setSpacing(6)
 
-        # ── Log panel nhỏ (thu gọn / mở rộng) ────────────────────
+        self.lbl_selected = QLabel("Chọn 1 dòng để thao tác")
+        self.lbl_selected.setObjectName("HintLabel")
+        ab.addWidget(self.lbl_selected)
+        ab.addStretch()
+
+        self.btn_regen_one  = _btn("▶ Tạo lại",  "BtnBlue", 30)
+        self.btn_open_video = _btn("🎥 Xem video","BtnGray",  30)
+        self.btn_open_video.setEnabled(False)
+        ab.addWidget(self.btn_regen_one)
+        ab.addWidget(self.btn_open_video)
+
+        lay.addWidget(self.action_bar)
+
+        # ── Log panel ─────────────────────────────────────────────
         self.log_panel = LogPanel()
         lay.addWidget(self.log_panel)
 
-        # Xem log fullscreen
         lb = QHBoxLayout(); lb.addStretch()
         self.btn_view_log = _btn("📋 Xem log", "BtnGray", 32)
         lb.addWidget(self.btn_view_log)

@@ -1,0 +1,10 @@
+2026/03/17-12:41:09.389 1480 Reusing MANIFEST D:\grok-video-tool\profiles\account_03\Default\Local Storage\leveldb/MANIFEST-000001
+2026/03/17-12:41:09.396 1480 Recovering log #3
+2026/03/17-12:41:09.396 1480 Level-0 table #3: started
+2026/03/17-12:41:09.678 1480 Level-0 table #3: 78616 bytes OK
+2026/03/17-12:41:09.679 1480 Recovering log #4
+2026/03/17-12:41:09.679 1480 Level-0 table #4: started
+2026/03/17-12:41:09.869 1480 Level-0 table #4: 78745 bytes OK
+2026/03/17-12:41:09.991 1480 Delete type=0 #3
+2026/03/17-12:41:09.991 1480 Delete type=0 #4
+2026/03/17-12:41:09.991 1480 Delete type=2 #5

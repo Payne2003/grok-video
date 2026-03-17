@@ -225,42 +225,240 @@ def inject_cookies(context, log, session_path=None):
     return bool(cookies)
 
 
-def find_and_fill_prompt(page, prompt):
-    for sel in [
+def debug_dump_inputs(page, log):
+    """
+    Dump tất cả input/textarea/contenteditable đang có trên trang.
+    Gọi khi find_and_fill_prompt thất bại để debug selector.
+    """
+    try:
+        items = page.evaluate("""() => {
+            const results = [];
+            // textarea
+            document.querySelectorAll('textarea').forEach((el, i) => {
+                results.push({
+                    type: 'textarea', index: i,
+                    placeholder: el.placeholder || '',
+                    visible: el.offsetParent !== null,
+                    id: el.id, className: el.className.slice(0,60)
+                });
+            });
+            // contenteditable
+            document.querySelectorAll('[contenteditable]').forEach((el, i) => {
+                results.push({
+                    type: 'contenteditable', index: i,
+                    ce: el.getAttribute('contenteditable'),
+                    role: el.getAttribute('role') || '',
+                    placeholder: el.getAttribute('placeholder') ||
+                                 el.getAttribute('data-placeholder') || '',
+                    visible: el.offsetParent !== null,
+                    id: el.id, className: el.className.slice(0,60)
+                });
+            });
+            // input[type=text]
+            document.querySelectorAll('input[type=text],input:not([type])').forEach((el,i) => {
+                results.push({
+                    type: 'input', index: i,
+                    placeholder: el.placeholder || '',
+                    visible: el.offsetParent !== null,
+                    id: el.id, className: el.className.slice(0,60)
+                });
+            });
+            return results;
+        }""")
+        log(f"DEBUG: Tìm thấy {len(items)} input elements trên trang:")
+        for it in items:
+            log(f"  [{it['type']}] visible={it['visible']} "
+                f"placeholder='{it.get('placeholder','')}' "
+                f"ce='{it.get('ce','')}' role='{it.get('role','')}' "
+                f"id='{it.get('id','')}' class='{it.get('className','')}'")
+    except Exception as e:
+        log(f"DEBUG dump lỗi: {e}")
+
+
+def find_and_fill_prompt(page, prompt, log=None, scene_name="scene"):
+    """
+    Tìm ô nhập prompt và điền vào.
+    Robust: thử nhiều selector, chờ page load xong, fallback JS inject.
+    """
+    _log = log or (lambda m: None)
+
+    # ── Selector theo mức ưu tiên ─────────────────────────────────
+    # Grok có thể dùng nhiều layout khác nhau theo account/region
+    SELECTORS = [
+        # Layout phổ biến nhất của Grok /imagine
+        "textarea[placeholder]",
         "textarea",
-        "div[contenteditable='true']",
+        # ContentEditable (Grok mới hơn)
+        "div[contenteditable='true'][role='textbox']",
         "div[contenteditable='plaintext-only']",
-        "div[role='textbox']",
-        "[placeholder*='prompt' i]",
-        "[placeholder*='Nhập' i]",
+        "div[contenteditable='true']",
+        # Placeholder-based (fallback)
         "[placeholder*='Describe' i]",
-    ]:
+        "[placeholder*='prompt' i]",
+        "[placeholder*='Enter' i]",
+        "[placeholder*='Nhập' i]",
+        "[placeholder*='Write' i]",
+        "[placeholder*='Type' i]",
+        # Generic role
+        "[role='textbox']",
+        # Input text
+        "input[type='text'][placeholder]",
+    ]
+
+    # Chờ trang ổn định trước khi tìm (tránh race condition)
+    try:
+        page.wait_for_load_state("networkidle", timeout=8000)
+    except:
+        pass
+    time.sleep(1)
+
+    for sel in SELECTORS:
         try:
-            el = page.wait_for_selector(sel, state="visible", timeout=3000)
-            if el:
-                el.click(); time.sleep(0.3)
-                ce = el.evaluate("e => e.getAttribute('contenteditable')")
-                if ce is not None:
-                    el.evaluate("e => e.innerText = ''")
-                    el.type(prompt, delay=20)
-                else:
+            el = page.wait_for_selector(sel, state="visible", timeout=2000)
+            if not el:
+                continue
+
+            # Kiểm tra element thực sự interact được
+            if not el.is_visible() or not el.is_enabled():
+                continue
+
+            _log(f"✅ Tìm thấy prompt input: {sel}")
+            el.scroll_into_view_if_needed()
+            time.sleep(0.2)
+            el.click()
+            time.sleep(0.3)
+
+            ce = el.evaluate("e => e.getAttribute('contenteditable')")
+            tag = el.evaluate("e => e.tagName.toLowerCase()")
+
+            if tag == "textarea" or tag == "input":
+                # Native input/textarea → dùng fill + type
+                try:
+                    el.fill("")
                     el.fill(prompt)
-                return True
-        except:
+                except:
+                    el.triple_click()
+                    el.type(prompt, delay=15)
+            elif ce is not None:
+                # ContentEditable → xóa bằng JS rồi type
+                el.evaluate("e => { e.innerText = ''; e.textContent = ''; }")
+                time.sleep(0.2)
+                el.type(prompt, delay=15)
+            else:
+                el.triple_click()
+                el.type(prompt, delay=15)
+
+            # Verify: kiểm tra có text chưa
+            time.sleep(0.3)
+            try:
+                val = el.evaluate(
+                    "e => e.value || e.innerText || e.textContent || ''"
+                )
+                if val.strip():
+                    _log(f"✅ Đã điền prompt ({len(val)} chars)")
+                    return True
+                else:
+                    _log(f"⚠️  Điền xong nhưng value rỗng — thử selector khác")
+                    continue
+            except:
+                return True  # Không verify được → assume OK
+
+        except Exception as e:
             continue
+
+    # ── Fallback: JS inject trực tiếp ────────────────────────────
+    _log("⚠️  Tất cả selectors thất bại — thử JS inject...")
+    try:
+        injected = page.evaluate(f"""(prompt) => {{
+            // Tìm element input/textarea/contenteditable visible đầu tiên
+            const candidates = [
+                ...document.querySelectorAll('textarea'),
+                ...document.querySelectorAll('[contenteditable]'),
+                ...document.querySelectorAll('input[type=text]'),
+                ...document.querySelectorAll('[role=textbox]'),
+            ];
+            const el = candidates.find(e => e.offsetParent !== null);
+            if (!el) return false;
+
+            el.focus();
+            if (el.tagName === 'TEXTAREA' || el.tagName === 'INPUT') {{
+                const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
+                    window.HTMLTextAreaElement.prototype, 'value'
+                ) || Object.getOwnPropertyDescriptor(
+                    window.HTMLInputElement.prototype, 'value'
+                );
+                nativeInputValueSetter.set.call(el, prompt);
+                el.dispatchEvent(new Event('input', {{ bubbles: true }}));
+                el.dispatchEvent(new Event('change', {{ bubbles: true }}));
+            }} else {{
+                el.innerText = prompt;
+                el.dispatchEvent(new InputEvent('input', {{ bubbles: true, data: prompt }}));
+            }}
+            return true;
+        }}""", prompt)
+
+        if injected:
+            _log("✅ JS inject thành công")
+            time.sleep(0.5)
+            return True
+    except Exception as e:
+        _log(f"JS inject lỗi: {e}")
+
+    # Debug: dump tất cả elements để biết trang đang hiện gì
+    debug_dump_inputs(page, _log)
+
+    # Chụp screenshot để debug
+    try:
+        shot = f"debug_{scene_name}_no_prompt.png"
+        page.screenshot(path=shot, timeout=5000)
+        _log(f"📸 Screenshot: {shot}")
+    except:
+        pass
+
     return False
 
 
-def click_submit(page):
-    for sel in ["button[aria-label='Gửi']", "button[aria-label='Send']",
-                "button[type='submit']"]:
+def click_submit(page, log=None):
+    _log = log or (lambda m: None)
+
+    SELECTORS = [
+        # Aria labels (đa ngôn ngữ)
+        "button[aria-label='Gửi']",
+        "button[aria-label='Send']",
+        "button[aria-label='Submit']",
+        "button[aria-label='Generate']",
+        "button[aria-label='Create']",
+        # Type submit
+        "button[type='submit']",
+        # Text-based (Playwright :has-text)
+        "button:has-text('Tạo video')",
+        "button:has-text('Generate')",
+        "button:has-text('Create')",
+        "button:has-text('Send')",
+        "button:has-text('Gửi')",
+        # SVG icon buttons thường ở góc phải textarea
+        "form button[type='submit']",
+        "form button:last-child",
+    ]
+
+    for sel in SELECTORS:
         try:
-            btn = page.wait_for_selector(sel, state="visible", timeout=4000)
-            if btn:
+            btn = page.wait_for_selector(sel, state="visible", timeout=3000)
+            if btn and btn.is_enabled():
+                _log(f"✅ Click submit: {sel}")
                 btn.click()
                 return True
         except:
             continue
+
+    # Fallback: Enter key (nhiều UI submit bằng Enter)
+    try:
+        _log("⚠️  Không tìm thấy nút submit — thử Enter key")
+        page.keyboard.press("Enter")
+        return True
+    except:
+        pass
+
     return False
 
 
@@ -446,12 +644,12 @@ def run_scene(scene_name, image_path, prompt, output_folder,
 
             # ── NHẬP PROMPT (chung cả 2 mode) ────────────────────
             log(f"Prompt: {prompt[:60]}")
-            if not find_and_fill_prompt(page, prompt):
+            if not find_and_fill_prompt(page, prompt, log=log, scene_name=scene_name):
                 raise RuntimeError("Không tìm thấy ô nhập prompt!")
             time.sleep(1)
 
             # ── SUBMIT ────────────────────────────────────────────
-            if not click_submit(page):
+            if not click_submit(page, log=log):
                 raise RuntimeError("Không tìm thấy nút Gửi/Send!")
             log("Đang tạo video...")
 
